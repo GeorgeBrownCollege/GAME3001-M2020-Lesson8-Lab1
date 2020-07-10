@@ -1,6 +1,7 @@
 #include "PlayScene.h"
 #include "Game.h"
 #include "EventManager.h"
+#include "Util.h"
 
 PlayScene::PlayScene()
 {
@@ -13,11 +14,16 @@ PlayScene::~PlayScene()
 void PlayScene::draw()
 {
 	drawDisplayList();
+	Util::DrawLine(m_pPlayer->getTransform()->position, m_pPlaneSprite->getTransform()->position);
 }
 
 void PlayScene::update()
 {
 	updateDisplayList();
+
+	CollisionManager::LOSCheck(m_pPlayer, m_pPlaneSprite, m_pObstacle);
+	
+
 }
 
 void PlayScene::clean()
